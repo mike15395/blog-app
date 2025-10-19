@@ -1,0 +1,23 @@
+<%- include('partials/header.ejs') %>
+<link rel="stylesheet" href="styles/style.css">
+<section class="view-post-container">
+
+    <h1>Blogs</h1>
+    <% if (allBlogs.length === 0) { %>
+     <h3>No blogs found! please create one!</h3>
+    <% } %>
+    <% allBlogs.forEach(element => {%>
+        <article class="blog-card" id="blog-<%= element?.id%>">
+            <h1><%=element?.title%></h1>
+            <p><%=element?.description%></p>
+            <div>
+                <button>Edit</button>
+                <button id=<%= element?.id %> class="delete-btn">Delete</button>
+            </div>
+        </article>
+    <%});%>
+    <script src="script/main.js"></script>
+
+</section>
+
+<%- include('partials/footer.ejs') %>
