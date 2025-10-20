@@ -1,0 +1,24 @@
+<%- include('partials/header.ejs') %>
+
+    <main>
+        <link rel="stylesheet" href="/styles/style.css">
+
+            <section>
+                <h2>Edit a blog</h2>
+                <form onsubmit="handleEditSubmit()" class="form-container"  >
+                    <div class="form-sub-container">
+                        <label for="title"><h3>Title</h3></label>
+                        <input type="text" name="title" class="input-title" value="<%= blog?.title %>" required>
+                    </div>
+
+                    <div class="form-sub-container">
+                        <label for="description"><h3>Description</h3></label>
+                        <textarea name="description" class="input-description" rows="10" required> <%= blog?.description %> </textarea>
+                    </div>
+
+                    <input type="submit" value="Save"  name="Edit" class="edit-save-btn" id="<%= blog.id %>">
+                </form>
+            </section>
+<script src="/script/edit.js"></script>
+    </main>
+<%- include('partials/footer.ejs') %>

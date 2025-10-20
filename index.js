@@ -32,6 +32,22 @@ app.get("/view", (req, res) => {
   res.render("view.ejs", { allBlogs: blogs });
 });
 
+app.get("/view/edit/:id", (req, res) => {
+  const editedBlog = blogs.find((b) => b.id === parseInt(req.params.id));
+
+  if (!editedBlog) return res.status(404).json({ message: "Blog not found" });
+  console.log(editedBlog);
+  res.render("edit.ejs", { blog: editedBlog });
+});
+
+app.put("/view/edit/:id", (req, res) => {
+  const blog = blogs.find((b) => b.id === parseInt(req.params.id));
+  if (!blog) return res.status(404).json({ message: "Blog not found" });
+  blog.title = req.body.title;
+  blog.description = req.body.description;
+  res.json({ message: "blog updated" }, blog);
+});
+
 app.delete("/view/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const index = blogs.findIndex((b) => b.id === id);

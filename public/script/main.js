@@ -12,4 +12,10 @@ allBlogs?.forEach((element) => {
       alert(`Error: ${data.message}`);
     }
   });
+
+  element.querySelector(".edit-btn").addEventListener("click", async (e) => {
+    const blogId = e.target.id;
+
+    window.location.href = `/view/edit/${blogId}`;
+  });
 });
