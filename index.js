@@ -11,6 +11,7 @@ app.listen(port, (req, res) => {
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.render("index.ejs");
@@ -45,7 +46,7 @@ app.put("/view/edit/:id", (req, res) => {
   if (!blog) return res.status(404).json({ message: "Blog not found" });
   blog.title = req.body.title;
   blog.description = req.body.description;
-  res.json({ message: "blog updated" }, blog);
+  res.json({ message: "blog updated", blog });
 });
 
 app.delete("/view/:id", (req, res) => {
